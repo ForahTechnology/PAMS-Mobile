@@ -1,9 +1,7 @@
 name: pams
 description: A new Flutter project.
 
-
-publish_to: 'none'
-
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -13,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.0.0+2
@@ -39,14 +36,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter:
-
-
   uses-material-design: true
 
   assets:
     - assets/images/
     - assets/svgs/
-
-

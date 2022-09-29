@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pams/views/clients/location/client_location.dart';
 import 'package:pams/views/onboarding/splashScreen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 700),
       builder: () => GetMaterialApp(
+        routes: {'/clientLocation': (context) => ClientLocation()},
         theme: ThemeData(fontFamily: 'Rubik-Medium'),
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),

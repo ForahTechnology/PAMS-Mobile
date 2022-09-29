@@ -76,7 +76,7 @@ class SynchronizeData extends ApiManager {
 
   static Future syncNESREATestTemplate() async {
     var db = PamsDatabase.init();
-    var nesreaTestTemplates = await PamsDatabase.fetch(db, 'nesreaTestTemplate');
+    var nesreaTestTemplates = await PamsDatabase.fetch(db, 'NESREATestTemplate');
     nesreaTestTemplates.forEach((nesreaTestTemplate) async {
       var nesreaTestTemplateData = await NESREATestTemplateData.fetch(nesreaTestTemplate['id'].toString());
       var response = await clientService.submitNESREATestTemplate(
