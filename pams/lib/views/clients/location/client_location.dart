@@ -9,6 +9,7 @@ import 'package:pams/providers/provider_services.dart';
 import 'package:pams/styles/custom_colors.dart';
 import 'package:pams/utils/controller.dart';
 import 'package:pams/utils/db.dart';
+import 'package:pams/utils/db_helpers.dart';
 import 'package:pams/utils/notify_user.dart';
 import 'package:pams/views/clients/location/add_location.dart';
 import 'package:pams/views/clients/location/edit_location.dart';
@@ -312,7 +313,7 @@ class _ClientLocationState extends ConsumerState<ClientLocation> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10, right: 10),
                                 child: FutureBuilder(
-                                  future: PamsDatabase.fetch(db, 'ClientLocation'),
+                                  future: PamsDatabaseHelpers.fetch(db, 'ClientLocation'),
                                   builder: ((context, snapshot) {
                                     if (snapshot.data == null) {
                                       return Center(

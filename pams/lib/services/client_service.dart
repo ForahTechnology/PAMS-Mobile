@@ -16,6 +16,7 @@ import 'package:pams/models/update_location_model.dart';
 import 'package:pams/utils/connection_status.dart';
 import 'package:pams/utils/controller.dart';
 import 'package:pams/utils/db.dart';
+import 'package:pams/utils/db_helpers.dart';
 import 'package:pams/views/authentication/auth.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:dio/dio.dart' as multipart;
@@ -126,7 +127,7 @@ class ClientServiceImplementation extends ApiManager {
         return AddLocationResponseModel(status: false);
       }
     } else {
-      await PamsDatabase.insert(db, addClientLocationURL, model.toJson(), token: token, category: 'ClientLocation');
+      await PamsDatabaseHelpers.insert(db, addClientLocationURL, model.toJson(), token: token, category: 'ClientLocation');
       Fluttertoast.showToast(msg: 'Sample point has been stored locally in offline mode.');
       return AddLocationResponseModel(status: false);
     }
@@ -173,7 +174,7 @@ class ClientServiceImplementation extends ApiManager {
       }
     } else {
       var postObj = {'samplePtId': samplePtId, 'DPRFieldId': DPRFieldId, 'Latitude': Latitude, 'Longitude': Longitude, 'DPRTemplates': DPRTemplates, 'Picture': Picture};
-      await PamsDatabase.insert(db, submitDPRTemplate, postObj, token: token, formdata: true, category: 'DPRTestTemplate');
+      await PamsDatabaseHelpers.insert(db, submitDPRTemplate, postObj, token: token, formdata: true, category: 'DPRTestTemplate');
       Fluttertoast.showToast(msg: 'DPR Template has been stored locally in offline mode.');
       return RunSimpleTestResponseModel(status: false);
     }
@@ -225,7 +226,7 @@ class ClientServiceImplementation extends ApiManager {
       }
     } else {
       var postObj = {'samplePtId': samplePtId, 'FMEnvFieldId': FMEnvFieldId, 'Latitude': Latitude, 'Longitude': Longitude, 'FMENVTemplates': FMENVTemplates, 'Picture': Picture};
-      await PamsDatabase.insert(db, submitFMENVTemplate, postObj, token: token, formdata: true, category: 'FMENVTestTemplate');
+      await PamsDatabaseHelpers.insert(db, submitFMENVTemplate, postObj, token: token, formdata: true, category: 'FMENVTestTemplate');
       Fluttertoast.showToast(msg: 'FMENV Template has been stored locally in offline mode.');
       return RunSimpleTestResponseModel(status: false);
     }
@@ -276,7 +277,7 @@ class ClientServiceImplementation extends ApiManager {
       }
     } else {
       var postObj = {'samplePtId': samplePtId, 'NesreaFieldId': NesreaFieldId, 'Latitude': Latitude, 'Longitude': Longitude, 'NesreaTemplates': NesreaTemplates, 'Picture': Picture};
-      await PamsDatabase.insert(db, submitNESREATemplate, postObj, token: token, formdata: true, category: 'NESREATestTemplate');
+      await PamsDatabaseHelpers.insert(db, submitNESREATemplate, postObj, token: token, formdata: true, category: 'NESREATestTemplate');
       Fluttertoast.showToast(msg: 'NESREA Template has been stored locally in offline mode.');
       return RunSimpleTestResponseModel(status: false);
     }

@@ -3,6 +3,7 @@ import 'package:pams/http/api_manager.dart';
 import 'package:pams/models/add_location_request_model.dart';
 import 'package:pams/services/client_service.dart';
 import 'package:pams/utils/db.dart';
+import 'package:pams/utils/db_helpers.dart';
 
 class SynchronizeData extends ApiManager {
   static var clientService = ClientServiceImplementation();
@@ -18,7 +19,7 @@ class SynchronizeData extends ApiManager {
 
   static Future syncClientLocation() async {
     var db = PamsDatabase.init();
-    var clientLocations = await PamsDatabase.fetch(db, 'ClientLocation');
+    var clientLocations = await PamsDatabaseHelpers.fetch(db, 'ClientLocation');
     if (clientLocations.length > 0) {
       clientLocations.forEach((clientLocation) async {
         var clientLocationData = await ClientLocationData.fetch(clientLocation['id'].toString());
@@ -30,7 +31,7 @@ class SynchronizeData extends ApiManager {
           ),
         );
         if (response!.status == true) {
-          await PamsDatabase.delete(db, clientLocation['id']);
+          await PamsDatabaseHelpers.delete(db, clientLocation['id']);
         }
       });
     }
@@ -38,7 +39,7 @@ class SynchronizeData extends ApiManager {
 
   static Future syncDPRTestTemplate() async {
     var db = PamsDatabase.init();
-    var dprTestTemplates = await PamsDatabase.fetch(db, 'DPRTestTemplate');
+    var dprTestTemplates = await PamsDatabaseHelpers.fetch(db, 'DPRTestTemplate');
     dprTestTemplates.forEach((dprTestTemplate) async {
       var dprTestTemplateData = await DPRTestTemplateData.fetch(dprTestTemplate['id'].toString());
       var response = await clientService.submitDPRTestTemplate(
@@ -50,14 +51,14 @@ class SynchronizeData extends ApiManager {
         Picture: dprTestTemplateData[0]['Picture'],
       );
       if (response.status == true) {
-        await PamsDatabase.delete(db, dprTestTemplate['id']);
+        await PamsDatabaseHelpers.delete(db, dprTestTemplate['id']);
       }
     });
   }
 
   static Future syncFMENVTestTemplate() async {
     var db = PamsDatabase.init();
-    var fmenvTestTemplates = await PamsDatabase.fetch(db, 'FMENVTestTemplate');
+    var fmenvTestTemplates = await PamsDatabaseHelpers.fetch(db, 'FMENVTestTemplate');
     fmenvTestTemplates.forEach((fmenvTestTemplate) async {
       var fmenvTestTemplateData = await FMENVTestTemplateData.fetch(fmenvTestTemplate['id'].toString());
       var response = await clientService.submitFMENVTestTemplate(
@@ -69,14 +70,14 @@ class SynchronizeData extends ApiManager {
         Picture: fmenvTestTemplateData[0]['Picture'],
       );
       if (response.status == true) {
-        await PamsDatabase.delete(db, fmenvTestTemplate['id']);
+        await PamsDatabaseHelpers.delete(db, fmenvTestTemplate['id']);
       }
     });
   }
 
   static Future syncNESREATestTemplate() async {
     var db = PamsDatabase.init();
-    var nesreaTestTemplates = await PamsDatabase.fetch(db, 'NESREATestTemplate');
+    var nesreaTestTemplates = await PamsDatabaseHelpers.fetch(db, 'NESREATestTemplate');
     nesreaTestTemplates.forEach((nesreaTestTemplate) async {
       var nesreaTestTemplateData = await NESREATestTemplateData.fetch(nesreaTestTemplate['id'].toString());
       var response = await clientService.submitNESREATestTemplate(
@@ -88,7 +89,7 @@ class SynchronizeData extends ApiManager {
         Picture: nesreaTestTemplateData[0]['Picture'],
       );
       if (response.status == true) {
-        await PamsDatabase.delete(db, nesreaTestTemplate['id']);
+        await PamsDatabaseHelpers.delete(db, nesreaTestTemplate['id']);
       }
     });
   }
