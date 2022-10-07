@@ -1,8 +1,4 @@
-import 'dart:ui';
-
-
 import 'package:intl/intl.dart';
-import 'package:pams/styles/custom_colors.dart';
 
 class AppHelpers {
   static String greetingMessage() {
@@ -59,26 +55,19 @@ class AppHelpers {
   //   }
   // }
 
-  
-  
-  static final currencyFormatter2 =
-      NumberFormat.simpleCurrency(name: 'NGN', decimalDigits: 2);
-  static final currencyFormatter0 =
-      NumberFormat.simpleCurrency(name: 'NGN', decimalDigits: 0);
+  static final currencyFormatter2 = NumberFormat.simpleCurrency(name: 'NGN', decimalDigits: 2);
+  static final currencyFormatter0 = NumberFormat.simpleCurrency(name: 'NGN', decimalDigits: 0);
   static final normalFormatter = '₦${NumberFormat("#,###.##")
     ..minimumFractionDigits = 2
     ..maximumFractionDigits = 2}';
-    static final largerNumberFormatter =  NumberFormat('##,###,###.00', "en_US");
+  static final largerNumberFormatter = NumberFormat('##,###,###.00', "en_US");
 }
 
 extension StringHelpers on String {
-  bool get isPasswordValid => RegExp(
-          r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*?&])[A-Za-z\d@$!#%*?&]{8,15}$")
-      .hasMatch(this);
+  bool get isPasswordValid => RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*?&])[A-Za-z\d@$!#%*?&]{8,15}$").hasMatch(this);
   bool get passwordHasSmallLetters => RegExp(r"^(?=.[a-z])").hasMatch(this);
   bool get passwordHasCapitalLetters => RegExp(r"^(?=.[A-Z])").hasMatch(this);
-  bool get passwordHasSymbols =>
-      RegExp(r"^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]").hasMatch(this);
+  bool get passwordHasSymbols => RegExp(r"^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]").hasMatch(this);
   bool get passwordHasNumber => RegExp(r"^(?=.*\d){8,15}$").hasMatch(this);
   String toPascalCase() {
     if (length < 1) {
@@ -86,8 +75,7 @@ extension StringHelpers on String {
     } else {
       String temp = '';
       for (final String item in split(' ')) {
-        temp +=
-            "${item[0].toUpperCase()}${item.substring(1).toLowerCase()}${split(' ').indexOf(item) == split(' ').length - 1 ? '' : ' '}";
+        temp += "${item[0].toUpperCase()}${item.substring(1).toLowerCase()}${split(' ').indexOf(item) == split(' ').length - 1 ? '' : ' '}";
       }
       return temp;
     }

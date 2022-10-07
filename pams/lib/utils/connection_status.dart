@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pams/utils/controller.dart';
-import 'package:pams/utils/sync.dart';
 
 class ConnectionStatus {
   static Future<bool> isConnected(BuildContext context) async {
@@ -29,7 +28,7 @@ class ConnectionStatus {
         if (!controller.connectionStatus.value) {
           Fluttertoast.showToast(msg: "Internet connection detected.");
           controller.connectionStatus.value = true;
-          SynchronizeData.init();
+          // SynchronizeData.init();
         }
       } else {
         if (controller.connectionStatus.value) {

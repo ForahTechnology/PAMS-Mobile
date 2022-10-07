@@ -2,14 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pams/providers/auth_provider.dart';
 import 'package:pams/providers/clients_data_provider.dart';
 import 'package:pams/utils/images.dart';
 import 'package:pams/views/authentication/auth.dart';
 import 'package:pams/views/homepage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,7 +29,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     var token = box.read('token');
     return Timer(
       Duration(
-        seconds: 3,
+        seconds: 1,
       ),
       () => Navigator.pushReplacement(
         context,
